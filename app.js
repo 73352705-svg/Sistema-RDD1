@@ -6,7 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // 1. Verificación Inicial de Autenticación
-    verificarSesion()
+    verificarSesion();
 
     // 2. Evento de Login
     document.getElementById('formLogin').addEventListener('submit', async (e) => {
