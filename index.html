@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Trámite Documentario | Grupo 01</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loginScreen" class="login-container">
+        <div class="login-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/2912/2912773.png" alt="Logo" class="login-logo">
+            <h2>Acceso al Sistema</h2>
+            <p>Control de Usuarios Registrados</p>
+            <form id="formLogin">
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <input type="text" name="username" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 15px;">Iniciar Sesión</button>
+            </form>
+            <div id="loginToast" class="toast hidden"></div>
+        </div>
+    </div>
+
+    <div id="appScreen" class="hidden">
+        
+        <header class="navbar">
+            <div class="logo-container">
+                <img src="https://cdn-icons-png.flaticon.com/512/2912/2912773.png" alt="Logo Sistema" class="logo">
+                <h2>Sistema de Registro y Distribución</h2>
+            </div>
+            <div class="user-actions">
+                <span class="user-info">👤 <span id="nombreUsuarioActivo">Cargando...</span></span>
+                <button class="btn" onclick="cerrarSesion()" style="margin-left: 15px; padding: 5px 10px; background-color: #ef4444; color:white;">Cerrar Sesión</button>
+                <button id="btnDarkMode" class="btn" style="margin-left: 10px; padding: 5px 10px; background-color: #4b5563; color:white;">🌙</button>
+            </div>
+        </header>
+
+        <main class="container">
+            
+            <aside class="panel form-panel">
+                <h3>Registrar Documento</h3>
+                <form id="formRegistro">
+                    <div class="form-group">
+                        <label>Código Único</label>
+                        <input type="text" id="codigo" name="codigo" required placeholder="Ej: DOC001" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Documento</label>
+                        <select id="tipo" name="tipo" required>
+                            <option value="">Seleccione...</option>
+                            <option value="Oficio">Oficio</option>
+                            <option value="Solicitud">Solicitud</option>
+                            <option value="Carta">Carta</option>
+                            <option value="Expediente">Expediente</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha de Recepción</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Remitente</label>
+                        <input type="text" id="remitente" name="remitente" required placeholder="Nombre o Institución">
+                    </div>
+                    <div class="form-group">
+                        <label>Despacho Destino</label>
+                        <select id="despacho" name="despacho" required>
+                            </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrar Documento</button>
+                </form>
+                <div id="toast" class="toast hidden"></div>
+            </aside>
+
+            <section class="panel table-panel">
+                <div class="toolbar">
+                    <h3>Búsqueda y Seguimiento</h3>
+                    <div class="filters">
+                        <input type="text" id="buscarCodigo" placeholder="Buscar por código..." autocomplete="off">
+                        <select id="filtroDespacho">
+                            <option value="">Todos los despachos</option>
+                            </select>
+                        <button class="btn btn-secondary" onclick="generarGuia()"> Generar Guía</button>
+                        <button class="btn" style="background-color: #4b5563; color: white;" onclick="window.print()"> Imprimir Reporte</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="tablaDocumentos">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Tipo</th>
+                                <th>Despacho</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="modalSeguimiento" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📋 Seguimiento del Documento</h3>
+                <button onclick="cerrarModal()" class="btn-close">✖</button>
+            </div>
+            <div class="modal-body" id="contenidoSeguimiento">
+                </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

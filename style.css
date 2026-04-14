@@ -1,0 +1,353 @@
+/* =========================================
+   VARIABLES Y CONFIGURACIÓN BASE
+   ========================================= */
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary: #10b981;
+    --bg-color: #f3f4f6;
+    --panel-bg: #ffffff;
+    --text-main: #1f2937;
+    --border: #e5e7eb;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Clase global para ocultar elementos (Login, Modales) */
+.hidden { 
+    display: none !important; 
+}
+
+/* =========================================
+   PANTALLA DE LOGIN (CONTROL DE USUARIOS)
+   ========================================= */
+.login-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background-color: #1e293b; /* Fondo oscuro por defecto para el login */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.login-box {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-logo { 
+    width: 70px; 
+    margin-bottom: 15px; 
+}
+
+.login-box h2 { 
+    color: #1f2937; 
+    margin-bottom: 5px; 
+}
+
+.login-box p { 
+    color: #6b7280; 
+    font-size: 0.9rem; 
+    margin-bottom: 25px; 
+}
+
+.login-box label { 
+    text-align: left; 
+    color: #374151;
+}
+
+/* =========================================
+   ESTRUCTURA PRINCIPAL Y ETIQUETAS SEMÁNTICAS
+   ========================================= */
+header.navbar {
+    background-color: #1e293b;
+    color: white;
+    padding: 15px; /* Requerimiento de Rúbrica */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    filter: invert(1);
+}
+
+main.container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 15px; /* Requerimiento de Rúbrica */
+    padding: 15px; /* Requerimiento de Rúbrica */
+    max-width: 1060px; /* VALOR EXACTO SOLICITADO EN LA RÚBRICA */
+    margin: auto;
+}
+
+.panel {
+    background: var(--panel-bg);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+    color: #374151;
+}
+
+/* =========================================
+   FORMULARIOS Y BOTONES
+   ========================================= */
+.form-group { margin-bottom: 15px; }
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: #ffffff;
+    color: #1f2937;
+}
+
+input:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.1s;
+    color: white;
+}
+.btn:active { transform: scale(0.98); }
+.btn-primary { background-color: var(--primary); width: 100%; margin-top: 10px;}
+.btn-primary:hover { background-color: var(--primary-hover); }
+.btn-secondary { background-color: var(--secondary); }
+.btn-secondary:hover { background-color: #059669; }
+
+/* =========================================
+   TABLAS Y FILTROS
+   ========================================= */
+.toolbar { display: flex; flex-direction: column; margin-bottom: 20px; }
+.filters { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.table-container { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background-color: #f9fafb; font-weight: 600; }
+
+.badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+}
+.badge.pendiente { background-color: #fef08a; color: #854d0e; }
+.badge.envio { background-color: #bae6fd; color: #0369a1; }
+.badge.entregado { background-color: #bbf7d0; color: #166534; }
+.badge.notificado { background-color: #fecaca; color: #991b1b; }
+
+/* =========================================
+   MODAL Y LÍNEA DE TIEMPO (SEGUIMIENTO)
+   ========================================= */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background: var(--panel-bg);
+    width: 90%; max-width: 500px;
+    border-radius: 10px; padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.modal-header { 
+    display: flex; justify-content: space-between; align-items: center; 
+    border-bottom: 1px solid var(--border); margin-bottom: 15px; padding-bottom: 10px;
+}
+.btn-close { 
+    background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: #ef4444;
+}
+.modal-body { max-height: 60vh; overflow-y: auto; padding-right: 10px;}
+
+.timeline-item {
+    padding: 10px 0; border-left: 2px solid var(--primary);
+    margin-left: 10px; padding-left: 15px; position: relative;
+    margin-bottom: 10px;
+}
+.timeline-item::before {
+    content: ''; position: absolute; left: -6px; top: 15px;
+    width: 10px; height: 10px; background: var(--primary); border-radius: 50%;
+}
+.timeline-date { font-size: 0.8rem; color: #6b7280; font-weight: bold; margin-bottom: 5px;}
+
+/* =========================================
+   NOTIFICACIONES (TOAST)
+   ========================================= */
+.toast {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+.toast.success { background-color: #d1fae5; color: #065f46; border: 1px solid #10b981;}
+.toast.error { background-color: #fee2e2; color: #991b1b; border: 1px solid #ef4444;}
+
+/* =========================================
+   CREATIVIDAD ADICIONAL: MODO OSCURO
+   ========================================= */
+body.dark-mode {
+    --bg-color: #111827;
+    --panel-bg: #1f2937;
+    --text-main: #f3f4f6;
+    --border: #374151;
+}
+
+body.dark-mode h3, 
+body.dark-mode label, 
+body.dark-mode th {
+    color: #f3f4f6;
+}
+
+body.dark-mode input, 
+body.dark-mode select {
+    background-color: #374151;
+    color: white;
+}
+
+body.dark-mode th { background-color: #374151; }
+body.dark-mode .btn-secondary { background-color: #059669; }
+
+/* Invertir el logo del login si el usuario activa el dark mode antes de cerrar sesión */
+body.dark-mode .login-box {
+    background-color: var(--panel-bg);
+}
+body.dark-mode .login-box h2, body.dark-mode .login-box label {
+    color: var(--text-main);
+}
+body.dark-mode .login-logo {
+    filter: invert(1);
+}
+
+/* =========================================
+   DISEÑO RESPONSIVO (MÓVILES)
+   ========================================= */
+@media (max-width: 768px) {
+    main.container {
+        grid-template-columns: 1fr; /* Pasa a 1 sola columna */
+    }
+    .filters {
+        flex-direction: column;
+    }
+    header.navbar {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    .user-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+}
+
+/* =========================================
+   CREATIVIDAD ADICIONAL: REPORTE IMPRIMIBLE
+   ========================================= */
+@media print {
+    /* Ocultar elementos innecesarios para el reporte */
+    aside.form-panel, 
+    .filters, 
+    .user-actions, 
+    td select, 
+    th:last-child, 
+    td:last-child {
+        display: none !important;
+    }
+
+    /* Expandir para ocupar el ancho de la hoja A4 */
+    main.container {
+        display: block;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .panel.table-panel {
+        box-shadow: none;
+        padding: 0;
+    }
+
+    body {
+        background-color: white;
+        color: black;
+    }
+
+    /* Título Formal de Impresión */
+    .table-container::before {
+        content: "REPORTE OFICIAL DE TRAZABILIDAD DE DOCUMENTOS";
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 20px;
+        text-decoration: underline;
+    }
+
+    table {
+        border: 1px solid #000;
+    }
+    th, td {
+        border: 1px solid #000;
+        color: black;
+    }
+    
+    /* Adaptar los badges para que se lean bien en blanco y negro */
+    .badge {
+        border: 1px solid #000;
+        background-color: transparent !important;
+        color: black !important;
+    }
+}
